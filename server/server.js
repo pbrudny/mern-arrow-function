@@ -119,6 +119,7 @@ app.use((req, res, next) => {
 
     const store = configureStore();
 
+    // punkt styczny kodu klienta z serwerowym
     return fetchComponentData(store, renderProps.components, renderProps.params)
       .then(() => {
         const initialView = renderToString(
