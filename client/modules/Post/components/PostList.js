@@ -4,14 +4,17 @@ import React, { PropTypes } from 'react';
 import PostListItem from './PostListItem/PostListItem';
 
 function PostList(props) {
+  console.log('PostList', props);
   return (
     <div className="listView">
       {
-        props.posts.map(post => (
+        props.posts.map(p => (
           <PostListItem
-            post={post}
-            key={post.cuid}
-            onDelete={() => props.handleDeletePost(post.cuid)}
+            post={p}
+            key={p.cuid}
+            onDelete={() => props.handleDeletePost(p.cuid)}
+            onThumbUp={(ev) => props.handleThumbUp(ev, p.cuid, p)}
+            onThumbDown={(ev) => props.handleThumbDown(ev, p.cuid, p)}
           />
         ))
       }
@@ -28,6 +31,8 @@ PostList.propTypes = {
     cuid: PropTypes.string.isRequired,
   })).isRequired,
   handleDeletePost: PropTypes.func.isRequired,
+  handleThumbUp: PropTypes.func.isRequired,
+  handleThumbDown: PropTypes.func.isRequired
 };
 
 export default PostList;
